@@ -7,7 +7,7 @@ void print_array(int p[], int n);
 void quick_sort(int p[], int x, int y);
 
 
-#define N 100
+#define N 90000
 
 int main(int argc, const char *argv[])
 {
@@ -19,8 +19,8 @@ int main(int argc, const char *argv[])
     printf("press enter to start ...\n");
     getchar();
     
-//    bubble_array(array,N);
-    quick_sort(array, 0, N-1);
+    bubble_array(array,N);
+//    quick_sort(array, 0, N-1);
     printf("finished press enter to list :\n");
     getchar();
     print_array(array, N);
