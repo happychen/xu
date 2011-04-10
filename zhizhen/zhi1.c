@@ -21,6 +21,6 @@ int main(int argc, const char *argv[])
         s++;
     }
     *p = '\0';
-    printf("%d\t%s\n",strlen(str),str);
+    printf("len = %d\t%s\n",strlen(str),str);
     return 0;
 }
