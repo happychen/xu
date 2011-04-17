@@ -14,7 +14,7 @@ void str_test(void)
     
 //    char str[100];
 //    printf("Please input a string:\n");
-//    scanf("%s",str);
+//    scanf("%s",str);//scanf遇到空格就是认为是非法的
 
     char str[100] = "This is only Game !";
     char *p = str;
