@@ -5,6 +5,10 @@
 int main(int argc, const char *argv[])
 {
     char str[20] = "This is a C world!";
+//    char str[100];
+//    printf("Please input a string :");
+//    scanf("%s",str);
+    
     char *p = str;
     char c_str[20];
     char *p_c = c_str;

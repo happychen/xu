@@ -1,3 +1,5 @@
+//淘汰选大王
+
 #include <stdio.h>
 #define N 10
 void init_array(int *p, int n);
@@ -54,12 +56,4 @@ void j_game(int *p, int n)
 
     }
 }
-
-
-
-
-
-
-
-
 

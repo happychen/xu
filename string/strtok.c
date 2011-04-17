@@ -11,6 +11,11 @@ int main(int argc, const char *argv[])
 
 void str_test(void)
 {
+    
+//    char str[100];
+//    printf("Please input a string:\n");
+//    scanf("%s",str);
+
     char str[100] = "This is only Game !";
     char *p = str;
     
