@@ -13,6 +13,7 @@ typedef struct node V_NODE;
 
 V_NODE *create_link(int n);
 void print_link(V_NODE *p);
+V_NODE *add_link(V_NODE *head);
 
 int main(int argc, const char *argv[])
 {
@@ -20,9 +21,13 @@ int main(int argc, const char *argv[])
     int n = 0;
     printf("Input a number :\n");
     scanf("%d",&n);
+    puts("The link you created :\n");
 
     head = create_link(n);
     print_link(head);
+    head = add_link(head);
+    print_link(head);
+    puts("The new link :\n");
     return 0;
 }
 
@@ -55,6 +60,43 @@ V_NODE *create_link(int n)
         p->next->next = NULL;
         p = p->next;
     }
+    return head;
+}
+
+V_NODE *add_link(V_NODE *head)
+{
+    V_NODE *p = NULL;
+    V_NODE *ptr = head;//把原先创建的链表传过来
+
+    p = malloc(sizeof(V_NODE));
+    if(p == NULL)
+    {
+        perror("malloc");
+        exit(0);
+    }
+    printf("where do you want to  input a link? \n");
+    scanf("%d",&p->number);
+    printf("Input link's name:\n");
+    scanf("%s",p->name);
+    p->next = NULL;
+
+    if(ptr == NULL)
+    {
+        return p; 
+    }
+    if(p->number < ptr->number)
+    {
+        p->next = ptr;
+        head = p;
+        return head;
+    }
+    while((p->number > ptr->next->number) && (ptr->next != NULL))
+    {
+        ptr = ptr->next;
+    }
+    p->next = ptr->next;
+    ptr->next = p;
+    
     return head;
 }
 void print_link(V_NODE *p)
