@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -16,9 +17,13 @@ void print_link(V_NODE *p);
 V_NODE *add_link(V_NODE *head);
 V_NODE *delete_link(V_NODE *head);
 
+
+void link_list(void);
+int get_choice(void);
+
 int main(int argc, const char *argv[])
 {
-    V_NODE *head;
+    V_NODE *head = NULL;
 /*    int n = 0;
     printf("Input a number :\n");
     scanf("%d",&n);
@@ -31,9 +36,36 @@ int main(int argc, const char *argv[])
     head = delete_link(head);
     print_link(head);
 */
+    char flag = 0;
+    while(!flag)
+    {
+        link_list();    
+        switch(get_choice())
+        {
+            case 1  : head = add_link(head); break;
+            case 2  : head = delete_link(head);break;
+            case 3  : print_link(head);break;
+            case 4  : flag = 1; break;
+            default : break;
+        }
+    }
     return 0;
 }
+int get_choice(void)
+{
+    int choice = 0;
+    scanf("%d",&choice);
+    return choice;
+}
 
+void link_list(void)
+{
+    printf("Please make a choice:\n");
+    printf("1.Add node\n");
+    printf("2.delete node\n");
+    printf("3.print link\n");
+    printf("4.exit\n");
+}
 V_NODE *create_link(int n)
 {
     V_NODE *p = NULL;
@@ -77,7 +109,8 @@ V_NODE *add_link(V_NODE *head)
         perror("malloc");
         exit(0);
     }
-    printf("where do you want to  input a link? \n");
+//    printf("where do you want to  input a link? \n");
+    printf("Please input number:\n");
     scanf("%d",&p->number);
     printf("Input link's name:\n");
     scanf("%s",p->name);
@@ -93,7 +126,7 @@ V_NODE *add_link(V_NODE *head)
         head = p;
         return head;
     }
-    while((p->number > ptr->next->number) && (ptr->next != NULL))
+    while((ptr->next != NULL)&&(p->number > ptr->next->number))
     {
         ptr = ptr->next;
     }
@@ -141,10 +174,16 @@ V_NODE *delete_link(V_NODE *head)
 }
 void print_link(V_NODE *p)
 {
+    if (p == NULL) 
+    {
+        printf("link empty.\n");
+    }
+    printf("student information:\n");
+    printf("number\tname\n");
     while(p != NULL)
     {
         printf("%d\t\%s\n",p->number,p->name);
         p = p->next;
     }
-    
+    printf("\n");
 }
