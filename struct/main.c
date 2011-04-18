@@ -50,7 +50,7 @@ void print_link(V_NODE *p, int n)
     for (i = 0; i < n; i++) 
     {
         printf("%5d", p->number);
-        if(((i+1)%8) == 0)
+        if(((i+1)%10) == 0)
         {
             printf("\n");
         }
@@ -58,14 +58,45 @@ void print_link(V_NODE *p, int n)
     }
     printf("\n");
 }
+void game_doing(V_NODE *follow)
+{
+    V_NODE *p = follow->next;
+    int interval = 3;
+    int counter = 0;
+    printf("input the interval:\n");
+    scanf("%d",&interval);
+    while(follow != follow->next)
+    {
+        counter++;
+        if(counter == interval)
+        {
+            counter = 0;
+            printf("%6d(out)\n", p->number);
+            follow->next = p->next;
+            free(p);
+            p = follow->next;
+        }
+        else
+        {
+            printf("%6d", p->number);
+            p = p->next;
+            follow = follow->next;
+        }
+    }
+    printf("%5d left!\n", follow->number);
+}
 int main(int argc, const char *argv[])
 {
     V_NODE *head = NULL;
     V_NODE *rear = NULL; 
     int n = 10; 
 
+    printf("Please input the value of n:\n");
+    scanf("%d",&n);
+
     rear = init_link(n);    
     head = rear->next;
-    print_link(head, 20);
+    print_link(head, n);
+    game_doing(rear);
     return 0;
 }
