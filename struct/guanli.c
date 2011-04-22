@@ -21,6 +21,7 @@ V_NODE *delete_link(V_NODE *head);
 void link_list(void);
 int get_choice(void);
 void save_link(V_NODE *p);
+V_NODE *load_link(void);
 
 void save_link(V_NODE *p)
 {
@@ -41,14 +42,13 @@ void save_link(V_NODE *p)
     fclose(fp);
 }
 
-/*
 V_NODE *load_link(void)
 {
     FILE *fp;
     int num;
     char na[20];
-    V_NODE *head;
-    V_NODE *p;
+    V_NODE *head = NULL;
+    V_NODE *p = NULL;
 
     fp = fopen("text","r+");
 
@@ -85,14 +85,13 @@ V_NODE *load_link(void)
     }
     return head;
 }
-*/
 
 int main(int argc, const char *argv[])
 {
     V_NODE *head = NULL;
-//    head =load_link();
-
     char flag = 0;
+
+    head =load_link();
     while(!flag)
     {
         link_list();    
