@@ -4,6 +4,7 @@
 #include <linux/fb.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
+#include <unistd.h>
 #include "main.h"
 
 fbscr_t fb_v;
@@ -50,6 +51,7 @@ int init_screen(void)
         }
     }
 */
+    close(fd);
     return 0;
 }
 
