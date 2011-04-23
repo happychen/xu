@@ -1,6 +1,6 @@
 #this is for chess game
 
-scr=main.c init_op.c basic_shape.c 
+scr=main.c init_op.c basic_shape.c print_board.c 
 para=-o main -Wall
 
 main:$(scr)

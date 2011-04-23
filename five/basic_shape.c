@@ -74,3 +74,33 @@ int fb_line(int x1, int y1, int x2, int y2, u32_t color)
     }
     return 0;
 }
+
+int fb_circle(int x0, int y0, int r, u32_t color)
+{
+   int x = 0;
+   int y = r;
+   int p = 3-2*r;
+
+   while(x <= y)
+   {
+            fb_one_pixel(x0+x, y0+y, color);
+//            fb_one_pixel(x0+y, y0+x, color);
+//            fb_one_pixel(x0-x, y0-y, color);
+//            fb_one_pixel(x0-y, y0-x, color);
+        fb_line(x0+x, y0+y, x0-x, y0+y,color);
+        fb_line(x0+y, y0+x, x0-y, y0+x,color);
+        fb_line(x0+x, y0-y, x0-x, y0-y,color);
+        fb_line(x0+y, y0-x, x0-y, y0-x,color);
+        if (p < 0) 
+        {
+            p += 4*x+6;
+        }
+        else
+        {
+            y--;
+            p += 4*(x-y)+10;
+        }
+        x++;
+   }
+   return 0;
+}
