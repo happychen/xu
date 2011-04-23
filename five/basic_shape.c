@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
@@ -18,28 +17,59 @@ int fb_line(int x1, int y1, int x2, int y2, u32_t color)
 
     int inc = ((dx*dy<0)?-1:1);
 
-    if (dx < 0) 
+    if (abs(dx) > abs(dy)) 
     {
-        swap(&x1, &x2);
-        swap(&y1, &y2);
-        dx = -dx;
-        dy = -dy;
-    }
-
-    dy = abs(dy);
-    p =2*dy-dx;
-    while(x1 <= x2)
-    {
-        fb_one_pixel(x1, y1, color);
-        x1++;
-        if (p < 0) 
+        if (dx < 0) 
         {
-            p += 2*dy;
+            swap(&x1, &x2);
+            swap(&y1, &y2);
+            dx = -dx;
+            dy = -dy;
         }
-        else
+
+        dy = abs(dy);
+        p =2*dy-dx;
+        while(x1 <= x2)
         {
-            y1 += inc;
-            p += 2*(dy-dx);
+            fb_one_pixel(x1, y1, color);
+            x1++;
+            if (p < 0) 
+            {
+                p += 2*dy;
+            }
+            else
+            {
+                y1 += inc;
+                p += 2*(dy-dx);
+            }
+        }
+    }
+    else
+    {
+        
+        if (dy < 0) 
+        {
+            swap(&x1, &x2);
+            swap(&y1, &y2);
+            dx = -dx;
+            dy = -dy;
+        }
+
+        dx = abs(dx);
+        p =2*dx-dy;
+        while(y1 <= y2)
+        {
+            fb_one_pixel(x1, y1, color);
+            y1++;
+            if (p < 0) 
+            {
+                p += 2*dx;
+            }
+            else
+            {
+                x1 += inc;
+                p += 2*(dx-dy);
+            }
         }
     }
     return 0;
