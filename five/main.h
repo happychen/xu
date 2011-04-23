@@ -25,6 +25,8 @@ typedef struct
 } fbscr_t;
 
 int init_screen(void);
+int restore(int x, int y);
+int save_bg(int x, int y);
 int draw_cursor(int x, int y);
 int print_board(void);
 int fb_one_pixel(int x, int y, u32_t color);

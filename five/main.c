@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "main.h" 
+#include "main.h"
+#include <unistd.h>
 
 int main(int argc, const char *argv[])
 {
@@ -13,6 +14,21 @@ int main(int argc, const char *argv[])
 //    fb_line(300,0,600,700,0x0000ff00);
 //    fb_circle(512,350,100,0x0000ff00);
 //    print_board();
-    draw_cursor(100, 200);
+    save_bg(512, 367);
+    draw_cursor(512, 367);
+
+    sleep(2);
+    restore(512, 367);
+    draw_cursor(400, 300);
+    
+    sleep(2);
+    restore(400, 300);
+    draw_cursor(600, 400);
+
+    sleep(2);
+    restore(600, 400);
+    draw_cursor(700, 700);
+    
+
     return 0;
 }
