@@ -39,6 +39,15 @@ int init_screen(void)
         perror("map");
         exit(0);
     }
+    int i = 0;
+    int j = 0;
+    for (j = 0; j < 100; j++) 
+    {
+        for (i = 0; i < 100; i++) 
+        {
+            p[j*fb_v.w+i] = 0x00ff0000;
+        }
+    }
 
     return 0;
 }
