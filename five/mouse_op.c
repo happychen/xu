@@ -98,6 +98,7 @@ int get_m_info(int fd, mouse_event *p)
 int mouse_doing(void)
 {
     int fd;
+    char press_flag = 0;
     mouse_event m_event;
 
     fd = open("/dev/input/mice", O_RDWR|O_NONBLOCK);
@@ -114,17 +115,33 @@ int mouse_doing(void)
 
     while(1)
     {
-
         if((get_m_info(fd, &m_event)) > 0)
         {
             restore(mx, my);
             mx += m_event.dx;
             my += m_event.dy;
+            mx = ((mx < 0) ? 0 : mx);
+            my = ((my < 0) ? 0 : my);
+
+            if (mx > (fb_v.w-C_W)) 
+            {
+                mx = fb_v.w-C_W;
+            }
+            if (my > (fb_v.h-C_H)) 
+            {
+                my = fb_v.h-C_H;
+            }
             switch(m_event.button)
             {
-                case 1 : fb_circle(mx, my, 13, 0x000000ff);break;
+               // case 1 : fb_circle(mx, my, 13, 0x000000ff);break;
+                case 0 : if(press_flag == 1)
+                    {
+                        press_flag = 0;
+                        chess_do();
+                    }break;
+                case 1 : press_flag = 1;break;
                 case 2 : break;
-                case 3 : break;
+                case 4 : break;
                 default : break;
             }
             draw_cursor(mx, my);

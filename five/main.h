@@ -7,11 +7,16 @@
 #define B_Y 24
 #define SPACE 30
 
-#define T___ 0x00
+#define YELLOW 0x00eebb00
+#define BLACK 0x00
+#define WHITE 0x00ffffff
+
+#define T___ YELLOW 
 #define BORD 0x0f
 #define X___ 0x00fffff
 #define C_W 10
 #define C_H 17
+
 
 typedef unsigned int u32_t;
 typedef unsigned char u8_t;
@@ -43,5 +48,6 @@ int fb_circle(int x0, int y0, int r, u32_t color);
 
 int mouse_doing(void);
 int get_m_info(int fd, mouse_event *p);
+int chess_do(void);
 
 #endif
