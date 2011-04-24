@@ -5,6 +5,7 @@
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <unistd.h>
+#include <string.h>
 #include "main.h"
 
 fbscr_t fb_v;

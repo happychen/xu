@@ -8,6 +8,53 @@ u32_t current_color = 0;
 char current_player = 0;
 
 char chess_board[B_Y*B_X];
+int check_one(int x, int y)
+{
+    int i = 0;
+    int counter = 0;
+    int who = 0;
+
+    who = chess_board[x+y*B_X];
+    if (who == 0) 
+    {
+        return 0;
+    }
+    counter = 1;
+    for (i = 1; i < 5; i++) 
+    {
+        if (chess_board[x+i+y*B_X] == who) 
+        {
+            counter++;
+        }
+        else
+        {
+            break;
+        }
+    }
+    if (counter == 5) 
+    {
+        return who;
+    }
+    return 0;
+}
+int check_win(void)
+{
+    int i = 0;
+    int j = 0;
+    int winner = 0;
+    for(j=0;j<B_Y;j++)
+    {
+        for (i = 0; i < B_X; i++) 
+        {
+            winner = check_one(i, j);
+            if (winner > 0) 
+            {
+                return winner;
+            }
+        }
+    }
+    return 0;
+}
 
 int chess_do(void)
 {
