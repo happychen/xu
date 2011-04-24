@@ -26,5 +26,7 @@ int print_board(void)
     {
         fb_line(ST_X+i*SPACE, ST_Y, ST_X+i*SPACE, ST_Y+(B_Y-1)*SPACE, BLACK);
     }
+    fb_circle(60, 100, 19, BLACK);
+    fb_circle(60, 200, 19, WHITE);
     return 0;
 }

@@ -4,6 +4,7 @@
 extern int mx;
 extern int my;
 char flag = 0;
+u32_t current_color = 0;
 
 int chess_do(void)
 {
@@ -45,6 +46,6 @@ int chess_do(void)
         y = my+(SPACE-y);
     }
 
-    fb_circle(x, y, 13, 0x0000ff00);
+    fb_circle(x, y, 13, current_color);
     return 0;
 } 
