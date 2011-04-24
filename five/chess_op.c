@@ -11,31 +11,44 @@ char chess_board[B_Y*B_X];
 int check_one(int x, int y)
 {
     int i = 0;
+    int j = 0;
     int counter = 0;
     int who = 0;
+    int m[4] = {1,0,1,1};
+    int n[4] = {0,1,1,-1}; 
+    int sx = x;
+    int sy = y;
 
     who = chess_board[x+y*B_X];
     if (who == 0) 
     {
         return 0;
     }
-    counter = 1;
-    for (i = 1; i < 5; i++) 
+    for (j = 0; j < 4; j++) 
     {
-        if (chess_board[x+i+y*B_X] == who) 
+        x = sx;
+        y = sy;
+    
+        counter = 1;
+        for (i = 1; i < 5; i++) 
         {
-            counter++;
+            x += m[j];
+            y += n[j];
+            if (chess_board[x+y*B_X] == who) 
+            {
+                counter++;
+            }
+            else
+            {
+                break;
+            }
         }
-        else
-        {
-            break;
+        if (counter == 5) 
+        {   
+            return who;
         }
-    }
-    if (counter == 5) 
-    {
-        return who;
-    }
-    return 0;
+     }
+        return 0;
 }
 int check_win(void)
 {
@@ -121,6 +134,7 @@ int chess_do(void)
     if (winner > 0)
     {
         printf("player %d won!\n", winner);        
+        fb_circle(512,350,300,0x0000ff00);
         return 0;
 
     }
