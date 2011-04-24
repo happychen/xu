@@ -3,12 +3,14 @@
 #include "main.h" 
 
 extern fbscr_t fb_v;
+extern char chess_board[B_X*B_Y];
 int print_board(void)
 {
     int i = 0;
     int j = 0;
 
     memset((u32_t *)fb_v.memo, 0, fb_v.w*fb_v.h*fb_v.bpp/8);
+    memset(chess_board, 0, B_X*B_Y);
 //board
     for (j = 10; j < ST_Y+(SPACE*B_Y); j++) 
     {

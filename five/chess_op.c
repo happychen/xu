@@ -134,8 +134,8 @@ int chess_do(void)
     if (winner > 0)
     {
         printf("player %d won!\n", winner);        
-        fb_circle(512,350,300,0x0000ff00);
-        return 0;
+//        fb_circle(512,350,300,0x0000ff00);
+        return winner;
 
     }
     
